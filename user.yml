@@ -3,6 +3,7 @@
   tasks:
     - name: Preconfig block
       block:
+
         - name: create user
           user: #it is a module
             #here it is vars from vars.yml file
@@ -16,8 +17,10 @@
             update-cache: yes
           register: error
           ignore_errors: yes # if we ignore errors, then don't get into rescue
+
       become: true #it's a sudo executing
       when: ansible_facts['distribution'] == 'Ubuntu' # this condition checks server's OS and execute if it's OK
+
       rescue:
         - name: Print error
           debug:
