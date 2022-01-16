@@ -1,0 +1,9 @@
+- name: user
+  hosts: my_host
+  tasks:
+    - name: create user
+      user: #it is a module
+        #here it is vars from vars.yml file
+        name: "{{ user }}"
+        state: "{{ state }}"
+      become: true

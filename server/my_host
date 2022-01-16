@@ -1,0 +1,2 @@
+[my_host]
+139.162.137.249 ansible_user=root
