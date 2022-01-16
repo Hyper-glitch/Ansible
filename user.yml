@@ -7,3 +7,6 @@
         name: "{{ user }}"
         state: "{{ state }}"
       become: true
+      register: out
+    - debug:
+        var: out
