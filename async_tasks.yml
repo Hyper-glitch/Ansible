@@ -1,0 +1,27 @@
+- name: user
+  hosts: my_host
+  tasks:
+    - name: Preconfig block
+      block:
+
+        - name: Sleep
+          command: /bin/sleep 15
+          async: 1000
+          poll: 0 # don't wait for finishing task
+          register: sleep # new variable
+
+        - debug: # output of the sleep var
+            var: sleep
+
+        - name: Echo
+          command: echo "DONE"
+      become: true #it's a sudo executing
+
+    - name: Check sleep status
+      async_status:
+        jid: "{{ sleep.ansible_job_id }}"
+      register: job_result
+      until: job_result.finished
+      retries: 100
+      delay: 1
+      become: true
