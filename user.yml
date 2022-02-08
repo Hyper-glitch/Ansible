@@ -1,5 +1,5 @@
 - name: user
-  hosts: my_host
+  hosts: cluster
   tasks:
     - name: Preconfig block
       block:
