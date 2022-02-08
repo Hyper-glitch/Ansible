@@ -1,5 +1,5 @@
 - name: Config docker and docker-compose
-  hosts: my_host
+  hosts: cluster
   tasks:
     - name: Install Docker
       block:
