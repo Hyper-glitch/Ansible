@@ -1,0 +1,12 @@
+---
+- name: install proxychains4
+  hosts: all
+  tasks:
+    - name: check if proxychains4 installed
+      shell: command -v proxychains4
+      register: proxychains4_exists
+      ignore_errors: true
+
+    - name: install proxychains4
+      when: proxychains4_exists is failed
+      shell: apt install proxychains4
