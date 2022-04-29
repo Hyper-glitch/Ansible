@@ -13,6 +13,7 @@
       ansible.builtin.package_facts:
         manager: auto
       loop: "{{ package_names }}"
+      register: is_installed
 
     - name: Install package if not installed
       package:
