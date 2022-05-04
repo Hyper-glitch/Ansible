@@ -14,7 +14,7 @@
       package:
         name: "{{ item }}"
         state: present
-      loop: "{{ lookup('env', 'PACKAGES') }}"
+      loop: "{{ package_names }}"
 
     - name: 'Check if microsocks exists'
       stat: path=~/microsocks/
