@@ -1,33 +1,35 @@
 ---
 - name: install proxychains4
-  hosts: vds
+  hosts: all
   become: yes
   gather_facts: no
   vars:
     package_names:
       - gcc
       - make
+      - git
       - proxychains4
   tasks:
-    - name: Check if listed package is installed
-      ansible.builtin.package_facts:
-        manager: auto
-      loop: "{{ package_names }}"
-      register: is_installed
-
-    - name: Install package if not installed
+    - name: 'Install packages'
       package:
         name: "{{ item }}"
         state: present
-      loop: "{{ package_names }}"
-      when: not is_installed
+      loop: "{{ lookup('env', 'PACKAGES') }}"
 
-    - name: check microsocks dir
+    - name: 'Check if microsocks exists'
       stat: path=~/microsocks/
       register: path
 
-    - name: download repo from git
+    - name: 'Download microsocks if needed'
       ansible.builtin.git:
         repo: 'https://github.com/rofl0r/microsocks.git'
         dest: ~/microsocks
       when: not path.stat.exists
+
+    - name: 'Install microsocks'
+      command: make install
+      args:
+        chdir: ~/microsocks
+
+    - name: 'Run proxychains4 microsocks'
+      shell: nohup proxychains4 microsocks </dev/null >/dev/null 2>&1 &
