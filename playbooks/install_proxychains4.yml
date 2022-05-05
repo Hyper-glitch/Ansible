@@ -16,6 +16,9 @@
         state: present
       loop: "{{ package_names }}"
 
+    - name: 'Kill microsocks'
+      shell: pkill microsocks
+
     - name: 'Check if microsocks exists'
       stat: path=~/microsocks/
       register: path
