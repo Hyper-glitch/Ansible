@@ -16,13 +16,14 @@
         state: present
       loop: "{{ package_names }}"
 
-    - name: 'Kill microsocks'
-      shell: pkill microsocks
-      ignore_errors: yes
-
     - name: 'Check if microsocks exists'
       stat: path=~/microsocks/
       register: path
+
+    - name: 'Kill microsocks'
+      shell: pkill microsocks
+      ignore_errors: yes
+      when: path.stat.exists
 
     - name: 'Download microsocks if needed'
       ansible.builtin.git:
