@@ -5,6 +5,7 @@
 Here is an experimental project for ansible, vagrant and docker swarm.
 
 Playbooks directory description:
+
 ***1. config_docker_compose.yml***
 Playbook for install and config docker and docker-compose
 
