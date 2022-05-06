@@ -6,7 +6,7 @@
         - name: Add universe
           apt_repository:
             repo: "deb http://us.archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }} universe"
-            state: present #exists there
+            state: present
 
         - name: Install packages for Docker
           apt:
@@ -58,8 +58,8 @@
         - name: Install docker-compose
           get_url:
             url: "https://github.com/docker/compose/releases/download/{{ page.json.tag_name }}/docker-compose-Linux-x86_64"
-            dest: /usr/local/bin/docker-compose #destination
-            mode: 0755 #chmod +x
+            dest: /usr/local/bin/docker-compose
+            mode: 0755
       become: yes
 
     - name: Finish installation
