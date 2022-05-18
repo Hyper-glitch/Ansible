@@ -1,0 +1,5 @@
+---
+- name: Config all
+  hosts: all
+  roles:
+    - preconfig
