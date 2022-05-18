@@ -10,6 +10,11 @@ Playbooks directory description:
 
 Playbook for install and config docker and docker-compose
 
+How to run:
+```bash
+ ansible-playbook  -i ip_host, -u user_host all.yml -K
+```
+
 ***2. install_proxychains4.yml***
 
 Playbook install proxychains4 and microsocks.
